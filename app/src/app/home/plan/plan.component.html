@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="plan-form">
+        <form [formGroup]="planForm" (submit)="onSubmitPlan()">
+            <div class="form-row">
+                <div class="col-sm-4">
+                    <label for="from" class="m-0">From</label>
+                    <select class="form-control mb-2" id="from" formControlName='from'>
+                        <option *ngFor="let city of fromCities" [value]="city">{{ city }}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <label for="to" class="m-0">To</label>
+                    <select class="form-control mb-2" id="to" formControlName='to'>
+                        <option *ngFor="let city of fromCities" [value]="city">{{ city }}</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label for="" class="m-0">Date</label>
+                    <input [min]="todayDate" class="form-control" type="date" formControlName='date'>
+                </div>
+                <div class="col-sm-1">
+                    <button [disabled]="planForm.invalid" class="btn btn-primary mt-4" type="submit">GO</button>
+                </div>
+            </div>
+            <button (click)="onClearBusArray()" type="button" class="btn btn-sm">Clear</button> 
+        </form>
+    </div>
+    <div class="alert alert-warning p-0 m-1" *ngIf="showNoBusesMsg">
+        <p>No buses in this route found</p>
+    </div>
+    <div class="bus-table table-responsive" *ngIf="busesArray.length>0">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="row">No:</th>
+                    <th>Bus Type</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Available</th>
+                    <th>Fare</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bus of busesArray; let i=index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{bus.name }} {{ bus.type}}</td>
+                    <td>{{bus.dep}}</td>
+                    <td>{{bus.arr}}</td>
+                    <td>{{bus.ava}}</td>
+                    <td>{{bus.fare}}</td>
+                    <td>
+                        <button [disabled]="viewSeatsDisabled[i]" type="button" (click)="onViewSeats(bus)" 
+                        class="btn btn-sm btn-success">View Seats</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

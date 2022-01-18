@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="show-bus-details row" *ngIf="!noBusDetails">
+        <div class="seat-layout col-sm-3 col-8 mb-2">
+            <div  class="seat"
+                [ngClass]="{'booked-seat':seatArray[i].booked, 'seat-center-gap': i>=20 && i<=29,
+                'clicked-seat': seatArray[i].clicked, 'seat-normal': i<20 || i>29}"
+                (click)="onSeatSelect(i+1)" *ngFor="let seat of seatArray;let i=index">
+            </div>
+        </div>
+        <div class="user-info col-sm-7 col-12">
+            <h4>Booking Summary</h4>
+            <div class="row">
+                <div class="col-sm-4 col-6">
+                    <p>From : </p>
+                </div>
+                <div class="col-sm-8 col-6">
+                    {{ bus.from }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-6">
+                    <p>To : </p>
+                </div>
+                <div class="col-sm-8 col-6">
+                    {{ bus.to }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-6">
+                    <p>Date : </p>
+                </div>
+                <div class="col-sm-8 col-6">
+                    {{ seatsObj.date }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-6">
+                    <p>Bus : </p>
+                </div>
+                <div class="col-sm-8 col-6">
+                    {{ bus.name }}, {{ bus.type }}
+                </div>
+            </div>
+            <form [formGroup]="seatForm" (submit)="onConfirm()">
+                <div formArrayName="seatDetails" class="seat-user-info"
+                    *ngFor="let seatNo of selectedSeatNos;let i=index">
+                    <div class="row">
+                        <div class="col-sm-4 col-6">
+                            <p class="mb-1">Seat No : </p>
+                        </div>
+                        <div class="col-sm-8 col-6">
+                            <p class="mb-1">{{ seatNo }}</p>
+                        </div>
+                    </div>
+                    <div class="form-row" [formGroupName]="i">
+                        <div class="col-sm-4 col-6 mb-0">
+                            <label class="text-primary ml-1 mb-0" for="name">Name</label>
+                            <input class="form-control ml-1 form-control-sm" type="text" id="name" placeholder="Name"
+                                formControlName="name">
+                        </div>
+                        <div class="col-sm-3 col-4 mb-1">
+                            <label class="text-primary ml-1 mb-0" for="name">Age</label>
+                            <input digitOnly class="form-control form-control-sm ml-1" type="number" id="age"
+                                formControlName="age" placeholder="Age">
+                        </div>
+                        <div class="col-sm-5 mb-1 pb-1 align-self-end">
+                            <label class="form-check-label mr-2 text-primary"><input class="" type="radio" [id]="'male'+i"
+                                    formControlName="gender" value="Male">Male</label>
+                            <label class="form-check-label text-primary" [for]="'gender'+i"><input class="" type="radio"
+                                    [id]="'female'+i" formControlName="gender" value="Female">Female</label>
+                        </div>
+                    </div>
+                    <div *ngIf="i===0" class="self-booking mt-0 mb-1 ml-1">
+                        <label class="form-check-label text-danger" for="self">Booking For Yourself ?
+                            <input class="text-danger" (change)="onSelfClicked($event)" id="self" type="checkbox">
+                        </label>
+                    </div>
+                </div>
+                <div class="show-on-seat" *ngIf="showSeat">
+                    <div class="row">
+                        <div class="col-sm-4 col-6">
+                            <p>Total Seats : </p>
+                        </div>
+                        <div class="col-sm-8 col-6">
+                            {{ selectedSeatNos.length }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-6">
+                            <p>Fare : </p>
+                        </div>
+                        <div class="col-sm-8 col-6">
+                            {{ bus.fare*selectedSeatNos.length}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-6">
+                            <p>Service Tax : </p>
+                        </div>
+                        <div class="col-sm-8 col-6">
+                         {{tax}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-6">
+                            <p>Total Charges : </p>
+                        </div>
+                        <div class="col-sm-8 col-6">
+                            {{ totalFare }}
+                        </div>
+                    </div>
+                </div>
+                <button *ngIf="showSeat" type="submit" [disabled]="seatForm.invalid || selectedSeatNos.length<=0"
+                    class="btn-sm btn btn-primary">Confirm</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="no-bus" *ngIf="noBusDetails">
+        <div class="alert alert-warning">
+            <p>Go Back and Select Your Bus Again</p>
+        </div>
+    </div>
+
+</div>

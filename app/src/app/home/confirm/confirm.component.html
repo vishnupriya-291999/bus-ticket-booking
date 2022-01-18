@@ -1,0 +1,88 @@
+<div class="container px-1">
+    <div class="ticket" *ngIf="busTicketsArray">
+        <h4 class="ml-2">Bus Ticket</h4>
+        <div class="bus-tickets" *ngFor="let busTicket of busTicketsArray">
+            <div class="main">
+                <table class="table table-sm uk-table-condensed alert alert-warning">
+                    <thead>
+                        <tr>
+                            <th>{{ busTicket.from }} to {{ busTicket.to }}</th>
+                            <th>{{ busTicket.date }}</th>
+                            <th>{{ busTicket.name }} {{ busTicket.type }}</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="passenger">
+                <table class="table table-sm p-0 m-0">
+                    <thead>
+                        <tr>
+                            <th>Passenger name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>SeatNo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let seat of busTicket.seatForm.seatDetails">
+                            <td> {{ seat.name }}</td>
+                            <td> {{ seat.age }}</td>
+                            <td> {{ seat.gender }}</td>
+                            <td> {{ seat.seatNo }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="other table-responsive-sm p-0 alert alert-secondary">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Departure</th>
+                            <th>Departure Time</th>
+                            <th>Destination</th>
+                            <th>Arrival Time</th>
+                            <th>Total Fare</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ busTicket.from }}</td>
+                            <td>{{ busTicket.dep }}</td>
+                            <td>{{ busTicket.to }}</td>
+                            <td>{{ busTicket.arr }}</td>
+                            <td>{{ busTicket.fare }}</td>
+                        </tr>
+                    </tbody>
+                    <!-- <thead>
+                        <tr>
+                            <th>Departure</th>
+                            <th>Departure Time</th>
+                            <th>Destination</th>
+                            <th>Arrival Time</th>
+                            <th>Total Fare</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chennai</td>
+                            <td>10:30pm</td>
+                            <td>bangalore</td>
+                            <td>9:30am</td>
+                            <td>1800</td>
+                        </tr>
+                    </tbody> -->
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="btn-wrapper m-2">
+        <div class="show-more-tickets">
+            <button *ngIf="ticketsLen>1" class="btn-sm btn btn-primary" (click)="onShowMore()"
+                type="button">{{showMoreBtn}} My Previous Bookings</button>
+        </div>
+        <div class="book-again-btn">
+            <button matTooltip="Goto Plan your travel" class="btn-sm btn btn-success" (click)="onBookAgain()"
+                type="button">Book Again</button>
+        </div>
+    </div>
+</div>

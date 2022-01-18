@@ -1,0 +1,14 @@
+.container {
+    padding-top: 2%;
+} 
+
+.plan-form, .bus-table {
+    margin: 0px auto;
+    width: 85%;
+}
+
+.bus-table {
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.6);
+}

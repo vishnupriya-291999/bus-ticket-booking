@@ -1,0 +1,45 @@
+.ticket {
+    width: 100%;
+    margin: 0px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.ticket h4 {
+    font-size: 1.4rem;
+}
+
+.bus-tickets {
+    border: 1px solid black;
+    margin: 5px 5px 20px 5px;
+}
+
+ul {
+    list-style-type: none;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+.book-again-btn {
+    width: fit-content;
+    margin: 0px auto;
+}
+
+.passenger  {
+    font-size: 0.8rem;
+    width: 90%;
+    margin: 4px auto;
+}
+
+.main, .other {
+    font-size: 0.9rem;
+    border-radius: 5px;
+    width: 95%;
+    margin: 4px auto;
+}
+.other thead tr {
+    color:rgb(26, 178, 255);
+    text-decoration: underline;
+}

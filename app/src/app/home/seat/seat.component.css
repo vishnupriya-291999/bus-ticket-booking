@@ -1,0 +1,59 @@
+.container {
+    padding:20px; 
+}
+
+.seat-layout {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 400px;
+    width: 40%;
+    margin-right: 5%;
+    align-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+}
+.user-info {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    width: 50%;
+    padding: 6px;
+}
+
+.seat-center-gap {
+    margin: 5px 5px 5px 30px;
+}
+
+.seat-normal {
+      margin: 5px 5px;  
+}
+
+.seat {
+    cursor: pointer;
+    width: 10%;
+    height: 7%;
+    background-image: url('../../bus-bookingw.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* color:green;
+    background-color: rgb(255, 255, 255);   */
+}
+
+.booked-seat {
+    color: rgba(255, 255, 255, 0.2);
+    cursor:not-allowed;
+    background-color: rgba(24, 23, 23, 0.6);    
+}
+.clicked-seat {
+    /* color:white;
+    background-color:green;    */
+    background-image: url('../../bus-bookingg.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+input.ng-invalid.ng-touched {
+    border: 1.5px solid red;
+}

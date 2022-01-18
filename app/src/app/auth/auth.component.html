@@ -1,0 +1,138 @@
+<div class="container">
+    <div class="header mb-5">
+        <div class="title">
+            <h1 class="mb-0 mt-3">Bus Booking App</h1>
+        </div>
+        <span class="expand"></span>
+        <div class="login-form">
+            <form #loginForm="ngForm" class="" (ngSubmit)="onLoginUser(loginForm)">
+                <div class="form-row mb-3">
+                    <div class="col-sm-5">
+                        <label class="mb-1" for="email">Email</label>
+                        <input type="text" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" name="email" ngModel required
+                            #email="ngModel" class="form-control form-control-sm mb-1">
+                        <div class="p-0" *ngIf="email.touched && email.invalid">
+                            <p *ngIf="email.errors?.required" style="color: red;" class="m-0">Email required</p>
+                            <p *ngIf="email.errors?.pattern" style="color: red;" class="m-0">Enter a Valid Email</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <label class="mb-1" for="pass">Password</label>
+                        <input type="password" name="pass" ngModel required #pass="ngModel"
+                            class="form-control form-control-sm mb-1">
+                        <div class="p-0" *ngIf="pass.invalid && pass.touched">
+                            <p style="color: red;" class="m-0">Password required</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-xs-12">
+                        <label style="visibility: hidden;" class="mb-1" for="">Hello</label>
+                        <button [disabled]="loginForm.invalid" type="submit"
+                            class="btn btn-sm btn-primary">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--SIGNUP-->
+
+    <div class="signup">
+        <div class="signup-form shadow-lg">
+            <form #signupForm="ngForm" (ngSubmit)="onCreateUser(signupForm)">
+                <h2 class="text-center mb-2">Create User</h2>
+                <p>All Fields are Required *</p>
+                <div class="form-group form-row mb-0">
+                    <div class="col-sm-6 col-xs-12 mb-3">
+                        <input required class="form-control" placeholder="First Name" type="text" id="fname"
+                            name="fname" ngModel #fname="ngModel">
+                    </div>
+                    <div class="col-sm-6 col-xs-12 mb-3">
+                        <input required type="text" placeholder="Last Name" class="form-control" id="lname" name="lname"
+                            ngModel #lname="ngModel">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend mr-1">
+                            <div class="input-group-text">+91</div>
+                        </div>
+                        <input pattern="[1-9]{1}[0-9]{9}" type="tel" minlength="10" maxlength="10" required
+                            placeholder="Phone number" class="form-control mt-0" name="phone" ngModel #phone="ngModel">
+                    </div>
+                    <div class="mb-0 mt-1" *ngIf="phone.invalid && phone.touched && phone.dirty">
+                        <div class="m-0" role="alert" class="alert alert-danger p-0 m-0">
+                            <p class="p-1 m-0">Enter a 10 digit mobile number</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group bg-white pl-2" style="width: fit-content; border-radius: 3px;">
+                    <div class="form-check form-check-inline text-dark">
+                        <input class="form-check-input" required value="Male" type="radio" name="gender" ngModel
+                            id="male" #gender="ngModel">
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline text-dark">
+                        <input class="form-check-input" required value="Female" type="radio" name="gender" ngModel
+                            id="female" #gender="ngModel">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                    <div class="mb-0 mt-1" *ngIf="gender.invalid && gender.touched">
+                        <div role="alert" class="alert alert-danger p-0 m-0">
+                            <p class="p-1 m-0">Select a Gender</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input dobDash type="text" required placeholder="DOB: dd/mm/yyyy" class="form-control" name="dob"
+                        ngModel #dob="ngModel" pattern="\d{1,2}/\d{1,2}/\d{4}" matTooltip="'/' will be added automatically as you type">
+                    <div class="mb-0 mt-1" *ngIf="dob.errors?.pattern && dob.touched && dob.dirty">
+                        <div role="alert" class="alert alert-danger p-0 m-0">
+                            <p class="p-1 m-0">Enter a valid Date of Birth</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input pattern="[^@\s]+@[^@\s]+\.[^@\s]+" type="text" required placeholder="Email Id"
+                        class="form-control" name="emailSignup" ngModel #emailSignup="ngModel">
+                    <div class="mb-0 mt-1" *ngIf="emailSignup.invalid && emailSignup.touched && emailSignup.dirty">
+                        <div role="alert" class="alert alert-danger p-0 m-0">
+                            <p class="p-1 m-0">Enter a valid email address</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input [type]="showPass? 'text' : 'password' " required placeholder="Password" pattern=".{8,25}"
+                        [(ngModel)]="passInput" class="form-control" name="passSignup" ngModel #passSignup="ngModel">
+                    <div class="mb-0 mt-1" *ngIf="passSignup.errors?.pattern && passSignup.touched && passSignup.dirty">
+                        <div role="alert" class="alert alert-danger p-0 m-0">
+                            <p class="p-1 m-0">Min 8 characters required</p>
+                        </div>
+                    </div>
+                    <div class="form-check" style="width: fit-content;">
+                        <label (click)="onShowPass($event)" class="form-check-label">
+                            <input class="form-check-input" type="checkbox">Show password
+                        </label>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="password" required placeholder="Retype Password" [(ngModel)]="repassInput"
+                        class="form-control" name="repass" ngModel #repass="ngModel">
+                    <div class="mt-1" *ngIf="repass.valid && passSignup.valid">
+                        <div role="alert" class="alert alert-danger p-0 m-0" *ngIf="passInput!==repassInput">
+                            <p class="p-1 m-0">Passwords do not match !</p>
+                        </div>
+                        <div role="alert" class="alert alert-success p-0 m-0" *ngIf="passInput===repassInput">
+                            <p class="p-1 m-0">Passwords Match !</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="signup-btn">
+                    <button class=" btn btn-success" [disabled]="signupForm.invalid || passInput!==repassInput"
+                        type="submit">Signup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

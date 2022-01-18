@@ -1,0 +1,29 @@
+<div class="headers">
+    <div class="p-2 text-center">
+        <li  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a [ngClass]="{'links-disabled': !isLinkDisbaled}" 
+            routerLink="plan">Plan Your Travel</a>
+        </li>
+    </div>
+    <div class="ml-1 p-2 text-center">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a [ngClass]="{'links-disabled': !isLinkDisbaled}" 
+            [routerLink]="['seat']" >Select Your Seats</a>
+        </li>
+    </div>
+    <div class="ml-1 p-2 text-center">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a [ngClass]="{'links-disabled': !isLinkDisbaled}" routerLink="payment">Payment</a>
+        </li>
+    </div>
+    <div class="ml-1 p-2 text-center">
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a [ngClass]="{'links-disabled': !isLinkDisbaled}" [routerLink]="['confirm']">Ticket Confirmation</a>
+        </li>
+    </div>
+</div>
+<div class="mt-2">
+    <div class="back-btn">
+        <button *ngIf="!disbaleBackBtn" class="btn btn-sm btn-primary" (click)="onGoBack()">Back</button>
+    </div>
+</div>

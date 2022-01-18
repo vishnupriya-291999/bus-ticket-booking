@@ -1,0 +1,36 @@
+.headers {
+    display: flex;
+}
+
+.headers li {
+    list-style-type: none;
+}
+
+.headers li a {
+    text-decoration: none;
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.3);
+}
+
+.headers > div {
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.active {
+    background-color: rgba(38, 179, 38, 0.637);
+    border-radius: 5px;
+}
+.links-disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.links-completed {
+    background-color: seagreen;
+}
+.back-btn {
+    width: fit-content;
+    margin-left: auto;
+}

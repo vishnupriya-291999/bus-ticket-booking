@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="pay-form" *ngIf="showPayment">
+        <h4>Enter your Payment Details</h4>
+        <form [formGroup]="payForm" (submit)="onPayFormSubmit()">
+            <div class="form-row mb-2">
+                <label class="mb-0 col-sm-2 col-12" for="name">Name on Card</label>
+                <input 
+                type="text" class="form-control col-sm-6 col-10" formControlName="name">
+            </div>
+            <div class="form-row mb-2">
+                <label class="mb-0 col-sm-2" for="">Card Number</label>
+                <input cardDash digitOnly maxlength="19" type="text" class="form-control col-sm-5 col-8" formControlName="cardno"
+                    placeholder="XXXX-XXXX-XXXX-XXXX" minlength="19" matTooltip="'-' will be added automatically as you type">
+            </div>
+            <div class="form-row">
+                <label class="mb-0 col-sm-2 col-12" for="">Expiry Date</label>
+                <div class="col-sm-2 col-6 pl-0">
+                    <div class="form-group m-0 p-0">
+                        <input digitOnly (keydown)="onKeyDown($event)" (input)="onInputExpiry($event)" type="text"
+                            class="form-control  mb-2" formControlName="expiry" placeholder="MM/YY" maxlength="5">
+                        <div *ngIf="!payForm.get('expiry')?.valid && payForm.get('expiry')?.dirty && payForm.get('expiry')?.touched"
+                            class="alert alert-danger p-0 m-0">
+                            <p class="p-0 m-0">Enter a valid expiry date</p>
+                        </div>
+                        <div *ngIf="monthInvalid && payForm.get('expiry')?.valid"
+                            class="alert alert-danger p-0 m-0">
+                            <p class="p-0 m-0">Enter a valid Month</p>
+                        </div>
+                    </div>
+                </div>
+                <label class="mb-0 col-sm-2 col-12 text-sm-center" for="">CVV</label>
+                <div class="col-sm-2 col-6 pl-0">
+                    <div class="form-group m-0 p-0">
+                        <input digitOnly type="password" class="form-control mb-2" formControlName="cvv" placeholder="***" maxlength="3">
+                        <div *ngIf="!payForm.get('cvv')?.valid && payForm.get('cvv')?.touched"
+                            class="alert alert-danger p-0 m-0">
+                            <p class="p-0 m-0">Enter your 3-digit CVV</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9 col-12">
+                <div class="pay-btn">
+                    <button [disabled]="!payForm.valid || monthInvalid" type="submit" class="btn btn-success">Pay</button> |
+                    <button type="button" class="btn btn-danger">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="!showPayment" class="error-msg mt-2">
+        <div class="alert alert-warning">
+            Go Back to Plan Your Journey
+        </div>
+    </div>
+</div>

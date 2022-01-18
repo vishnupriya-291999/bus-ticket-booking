@@ -1,0 +1,32 @@
+.container {
+    margin: 0px auto;
+    /* padding: 20vh 0 0 0; */
+    /* display: flex; */
+}
+.header {
+    margin-bottom: 10%;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.24);
+    color: white;
+}
+.title {
+    width: fit-content;
+}
+h2{
+    font-size: 1.6rem;
+    width: 75%;
+}
+.content {
+    /* flex: 1 1 auto; */
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* .label > h1,.logout-btn {
+    display: inline;
+} */
+
+.logout-btn {
+    width: fit-content;
+    margin: 0px auto;
+}
