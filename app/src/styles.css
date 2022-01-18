@@ -1,0 +1,13 @@
+html,
+body {
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-image: url('./bg-wallpaper/bgimag2.jpg');
+    background-position: center;
+    /* background-repeat: no-repeat; */
+    background-size: cover;
+}
